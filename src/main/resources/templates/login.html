@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Deep Blue Admin</title>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/local.css" />
+    <link href="select2/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+</head>
+<body>
+   <form id="myForm" method="post" action="/login">
+        <fieldset>
+            Username<input type="text" name="username">
+            Password<input type="password" name="password">
+        </fieldset>
+       <input type="submit" value="Login">
+   </form>
+   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+   <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+
+   <script src="js/moment.min.js"></script>
+   <script src="select2/js/select2.min.js"></script>
+   <script type="text/javascript" src="js/daterangepicker.js"></script>
+   <script>
+    $(function(){
+        $('#myForm').submit(function(event){
+            event.preventDefault();
+            var url = $(this).attr('action');
+            //var href = "http://" + "{{{client.redirectUrl}}}" + data.value;
+            $.post(url, $(this).serialize(), function(data){
+                if(data.success==true) {
+                    window.location.href = "http://" + "{{{client.redirectUrl}}}" + data.value;
+                }
+                else {
+                    console.log("false");
+                }
+            },"json");
+        });
+    });
+    </script>
+</body>
+</html>
